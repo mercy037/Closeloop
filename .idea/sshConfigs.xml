@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" host="localhost" id="fcc5b45b-b0f3-4bfc-b7b5-4242d738b526" port="22" customName="Surver2" nameFormat="CUSTOM" useOpenSSHConfig="true">
+        <option name="customName" value="Surver2" />
+      </sshConfig>
+      <sshConfig authType="PASSWORD" host="100.64.158.180" id="44120a0d-f1e3-4a99-bff7-e1d9f02c8622" port="22" nameFormat="DESCRIPTIVE" username="lixc" useOpenSSHConfig="true" />
+    </configs>
+  </component>
+</project>

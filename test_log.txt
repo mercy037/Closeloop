@@ -1,0 +1,67 @@
+tb_log_name="train_2_0524"
+    首次使用不同的奖励进行训练，引入车头时距和碰撞速度惩罚
+    测试效果：
+    150w 0 碰撞率：2.15% 1 碰撞率：24.19% 2 碰撞率：35.44%
+    275w 0 碰撞率：52.38%(12.46%head1) 1 碰撞率：12.22%
+    350w 1 碰撞率：19.04%
+    总结，单个任务碰撞率都有所下降，但完全没有记住旧任务
+
+tb_log_name="train_0526"
+    首次对actor和critic给定不同约束强度，减轻车头时距惩罚
+    actor_q_ewc_reg = 1
+    critic_q_ewc_reg = 0.001
+    测试效果：
+    150w 0 碰撞率：9.61%
+    200w 0 碰撞率：11.15% 1 碰撞率：25.39%
+    250w 0 碰撞率：10.19% 1 碰撞率：27.09%
+    300w 0 碰撞率：19.27% 1 碰撞率：18.08%
+    350w 0 碰撞率：遗忘 1 碰撞率：21.62%
+    总结，150w-250w之间对任务一记忆效果很好，但是完全学不会新任务
+         250w之后在任务二有所学习，同时也遗忘了任务一
+         猜测actor_q_ewc_reg过大，且奖励更改后效果不如之前
+
+tb_log_name="train_0528_reg"
+    忘了
+
+tb_log_name="train_0530_reg_0.1"
+    actor_q_ewc_reg = 0.1
+    critic_q_ewc_reg = 0.001
+    给的小一点，但是任务二任务三还是降不下来，还是要改奖励
+
+tb_log_name="train_0601_reward_critic0"
+    actor_q_ewc_reg = 0.5
+    critic_q_ewc_reg = 0
+    critic正则化强度太大，疑似根本学不会新任务，去掉critic约束
+    同时应该是从这开始，fisher采样估计直接从经验池末尾取样本，而不是随机取样
+    测试效果：
+    150w 0 碰撞率：6.20%
+    200w 0 碰撞率：13.95% 1 碰撞率：12.63%
+    250w 0 碰撞率：22.39% 1 碰撞率：%
+
+    总结：任务一有所遗忘，任务二有所下降
+         也许critic还是不能完全搁置
+
+tb_log_name="train_0603_reg1000001"
+    actor_q_ewc_reg = 1
+    critic_q_ewc_reg = 0.00001
+    或许是critic的梯度太大了，一切换就是四万多，现在给一个十万分之一，大概零点几试试
+    测试效果：
+    怎么critic_q_ewc_reg小了critic_reg_loss又大了，不懂
+     actor_reg_loss tensor(0.0431, device='cuda:0', grad_fn=<AddBackward0>)
+     actor_loss:46.41488265991211,actor_ewc_reg:0.04312309995293617
+     critic_reg_loss tensor(225105.6406, device='cuda:0', grad_fn=<AddBackward0>)
+     critic_loss:17.416154861450195,critic_ewc_reg:2.251056432723999
+
+
+
+tb_log_name="train_0603_actor1_critic0"
+    actor_q_ewc_reg = 1
+    critic_q_ewc_reg = 0
+    actor_q_ewc_reg=0.5的时候产生了遗忘，没有约束到，现在和0603_reg1000001同步，对比下有没有critic的区别
+
+
+tb_log_name="train_0604_reg5000001"
+    actor_q_ewc_reg = 5
+    critic_q_ewc_reg = 0.00001
+
+

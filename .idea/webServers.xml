@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="7fd29788-d2d0-4366-b0f2-2678312acc4b" name="Surver2">
+        <fileTransfer accessType="SFTP" host="localhost" port="22" sshConfigId="fcc5b45b-b0f3-4bfc-b7b5-4242d738b526" sshConfig="Surver2">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="759bd9b0-985a-49b1-a75d-990bb633ff61" name="Surver1">
+        <fileTransfer accessType="SFTP" host="100.64.181.97" port="22" sshConfigId="ada4c8f0-c926-445d-b04a-4a811d8f76d2" sshConfig="Wangzhaoyi@100.64.181.97:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="a1da5f3d-e582-4a61-94e0-4522dc659a71" name="4090">
+        <fileTransfer accessType="SFTP" host="100.64.158.180" port="22" sshConfigId="44120a0d-f1e3-4a99-bff7-e1d9f02c8622" sshConfig="lixc@100.64.158.180:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="1725fbf7-7b98-40d8-a030-2cdad5a1cc0d" name="3090">
+        <fileTransfer accessType="SFTP" host="100.64.181.97" port="22" sshConfigId="ada4c8f0-c926-445d-b04a-4a811d8f76d2" sshConfig="Wangzhaoyi@100.64.181.97:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

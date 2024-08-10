@@ -1,0 +1,21 @@
+pyth1.启动CARLA：
+	cd /home/Wangzhaoyi/Carla/CARLA_0.9.11/
+	cd /home/lixc/Carla/CARLA_0.9.11
+	DISPLAY= ./CarlaUE4.sh -opengl -carla-rpc-port=4070 -carla-primary-host=127.0.0.1
+2.在指定GPU启动carla
+	CUDA_VISIBLE_DEVICES=2 DISPLAY= ./CarlaUE4.sh -opengl -carla-rpc-port=4090
+3.进入工作路径：
+    cd /home/Wangzhaoyi/Pycharm_Projects/13.Automatically_change_adversarial
+    cd /home/test/Pycharm_Projects/13.Critical_scenario_generation
+  server1:
+    cd /home/Wangzhaoyi/LXC_Projects/Critical_scenario_generation
+  4090:
+    cd /home/lixc/PycharmProjects/test
+
+4.进入虚拟环境
+    source activate carla
+    python Training_autonomous_vehicle.py --carla_port 4090 --tm_port 8005
+    python Training_autonomous_vehicle.py --carla_port 1080 --tm_port 8088
+
+5.Tensorboard
+tensorboard --logdir 路径

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" serverName="Wangzhaoyi@100.64.181.97:22 password" autoUploadExternalChanges="true">
+    <serverData>
+      <paths name="3090">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/Wangzhaoyi/CSY_Projects/Closed-loop" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="4090">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/lixc/PycharmProjects/test" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="Surver1">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/Wangzhaoyi/LXC_Projects/Critical_scenario_generation" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="Surver2">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="Wangzhaoyi@100.64.181.97:22 password">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/Wangzhaoyi/CSY_Projects/Closed-loop" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>

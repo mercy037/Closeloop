@@ -1,0 +1,191 @@
+0526 0521_fisher tb_log_name="train_0526"
+    env_train_av
+        # # 碰撞惩罚
+        if collision:
+            reward_cl = -200.0 - abs(v_S) * 0.5
+        else:
+            reward_cl = 0.0
+
+        # 车头时距奖励
+        thw_init = 100
+        for i, actor in enumerate(self.traffic_module.actors_batch):
+            # 获取字典中Obj-frenet_state中的车辆状态信息
+            act_s, act_d, act_v_S, act_v_D, act_psi_Frenet, other_info = actor['Obj_Frenet_state']
+            lane_distance = abs(act_d - ego_d)
+            if lane_distance < 2.5:
+                s_distance = act_s - ego_s
+                if s_distance >= 0:
+                    thw = s_distance / abs(v_S)
+                else:
+                    thw = - s_distance / abs(act_v_S)
+
+                thw = min(thw_init, thw)
+                thw_init = thw
+
+        if thw_init >= 3:
+            reward_h = 0
+        elif thw_init >= 2:
+            reward_h = -0.5
+        elif thw_init >= 1:
+            reward_h = -1
+        elif thw_init >= 1:
+            reward_h = -1.5
+        else:
+            reward_h = -2.5
+
+        # # 速度优先在某范围
+        self.v_S = v_S
+        scaled_speed_l = lamp(v_S, [0, self.minSpeed], [0, 1])  # v_S/v_min
+        scaled_speed_h = lamp(v_S, [self.minSpeed, self.maxSpeed], [0, 1])  # (v_S-v_min)/(v_max-v_min)
+        reward_hs_l = 0.5
+        # reward_hs_h = 5.0
+        reward_hs_h = 2.5
+        reward_sp = reward_hs_l * np.clip(scaled_speed_l, 0, 1) + reward_hs_h * np.clip(scaled_speed_h, 0, 1)
+
+    env_train_adversarial_lon
+        # # 碰撞惩罚
+        if collision:
+            reward_cl = -200 - abs(v_S) * 2
+        else:
+            reward_cl = 0.0
+
+        # 车头时距奖励
+        thw_init = 100
+        for i, actor in enumerate(self.traffic_module.actors_batch):
+            # 获取字典中Obj-frenet_state中的车辆状态信息
+            act_s, act_d, act_v_S, act_v_D, act_psi_Frenet, other_info = actor['Obj_Frenet_state']
+            lane_distance = abs(act_d - ego_d)
+            if lane_distance < 2.5:
+                s_distance = act_s - ego_s
+                if s_distance >= 0:
+                    thw = s_distance / abs(v_S)
+                else:
+                    thw = - s_distance / abs(act_v_S)
+
+                thw = min(thw_init, thw)
+                thw_init = thw
+
+        if thw_init >= 3:
+            reward_h = 0
+        elif thw_init >= 2:
+            reward_h = -1
+        elif thw_init >= 1:
+            reward_h = -2
+        elif thw_init >= 1:
+            reward_h = -3
+        else:
+            reward_h = -4
+
+        # # 速度优先在某范围
+        self.v_S = v_S
+        scaled_speed_l = lamp(v_S, [0, self.minSpeed], [0, 1])  # v_S/v_min
+        scaled_speed_h = lamp(v_S, [self.minSpeed, self.maxSpeed], [0, 1])  # (v_S-v_min)/(v_max-v_min)
+        reward_hs_l = 0.75
+        # reward_hs_h = 5.0
+        reward_hs_h = 2.25
+        reward_sp = reward_hs_l * np.clip(scaled_speed_l, 0, 1) + reward_hs_h * np.clip(scaled_speed_h, 0, 1)
+
+    env_train_adversarial
+        # # 碰撞惩罚
+        if collision:
+            reward_cl = -200 - abs(v_S) * 3
+        else:
+            reward_cl = 0.0
+
+        # 车头时距奖励
+        thw_init = 100
+        for i, actor in enumerate(self.traffic_module.actors_batch):
+            # 获取字典中Obj-frenet_state中的车辆状态信息
+            act_s, act_d, act_v_S, act_v_D, act_psi_Frenet, other_info = actor['Obj_Frenet_state']
+            lane_distance = abs(act_d - ego_d)
+            if lane_distance < 2.5:
+                s_distance = act_s - ego_s
+                if s_distance >= 0:
+                    thw = s_distance / abs(v_S)
+                else:
+                    thw = - s_distance / abs(act_v_S)
+
+                thw = min(thw_init, thw)
+                thw_init = thw
+
+        if thw_init >= 3:
+            reward_h = 0
+        elif thw_init >= 2:
+            reward_h = -1.5
+        elif thw_init >= 1:
+            reward_h = -2.5
+        elif thw_init >= 1:
+            reward_h = -4
+        else:
+            reward_h = -5
+
+        # # 速度优先在某范围
+        self.v_S = v_S
+        scaled_speed_l = lamp(v_S, [0, self.minSpeed], [0, 1])  # v_S/v_min
+        scaled_speed_h = lamp(v_S, [self.minSpeed, self.maxSpeed], [0, 1])  # (v_S-v_min)/(v_max-v_min)
+        reward_hs_l = 1.0
+        # reward_hs_h = 5.0
+        reward_hs_h = 2.0
+        reward_sp = reward_hs_l * np.clip(scaled_speed_l, 0, 1) + reward_hs_h * np.clip(scaled_speed_h, 0, 1)
+
+
+0531 0531_reward tb_log_name="train_0531_r"
+    env_train_av
+        if thw_init >= 4:
+            reward_h = 0
+        elif thw_init >= 3:
+            reward_h = -0.5
+        elif thw_init >= 2:
+            reward_h = -1.0
+        elif thw_init >= 1:
+            reward_h = -1.5
+        else:
+            reward_h = -3.0
+
+        # # 速度优先在某范围
+        self.v_S = v_S
+        scaled_speed_l = lamp(v_S, [0, self.minSpeed], [0, 1])  # v_S/v_min
+        scaled_speed_h = lamp(v_S, [self.minSpeed, self.maxSpeed], [0, 1])  # (v_S-v_min)/(v_max-v_min)
+        reward_hs_l = 0.5
+        # reward_hs_h = 5.0
+        reward_hs_h = 2.5
+
+    env_train_adversarial_lon
+        if thw_init >= 4:
+            reward_h = 0
+        elif thw_init >= 3:
+            reward_h = -0.75
+        elif thw_init >= 2:
+            reward_h = -1.5
+        elif thw_init >= 1:
+            reward_h = -2.25
+        else:
+            reward_h = -4.5
+
+        # # 速度优先在某范围
+        self.v_S = v_S
+        scaled_speed_l = lamp(v_S, [0, self.minSpeed], [0, 1])  # v_S/v_min
+        scaled_speed_h = lamp(v_S, [self.minSpeed, self.maxSpeed], [0, 1])  # (v_S-v_min)/(v_max-v_min)
+        reward_hs_l = 0.5
+        # reward_hs_h = 5.0
+        reward_hs_h = 2.25
+
+    env_train_adversarial
+                if thw_init >= 4:
+            reward_h = 0
+        elif thw_init >= 3:
+            reward_h = -1
+        elif thw_init >= 2:
+            reward_h = -2
+        elif thw_init >= 1:
+            reward_h = -3
+        else:
+            reward_h = -5.5
+
+        # # 速度优先在某范围
+        self.v_S = v_S
+        scaled_speed_l = lamp(v_S, [0, self.minSpeed], [0, 1])  # v_S/v_min
+        scaled_speed_h = lamp(v_S, [self.minSpeed, self.maxSpeed], [0, 1])  # (v_S-v_min)/(v_max-v_min)
+        reward_hs_l = 0.5
+        # reward_hs_h = 5.0
+        reward_hs_h = 2
